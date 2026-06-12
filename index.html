@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Standar Operasional Prosedur (SOP) Laboratorium Komputer - Program Studi Pendidikan Teknologi Informasi, FKIP Universitas Lampung">
+  <title>SOP Lab Komputer - PTI FKIP UNILA</title>
+
+  <!-- PWA & Meta -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2D1B4E">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SOP Lab">
+  <link rel="apple-touch-icon" href="assets/app-icon.png">
+  <link rel="icon" type="image/png" href="assets/app-icon.png">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ====== 3D BACKGROUND ====== -->
+  <div id="vanta-bg"></div>
+
+  <!-- ====== SPLASH SCREEN ====== -->
+  <div id="splashScreen">
+    <img src="assets/app-icon.png" alt="SOP Lab Logo" class="splash-logo">
+    <div class="splash-text">SOP Lab Komputer</div>
+  </div>
+
+  <!-- ====== HEADER ====== -->
+  <header class="app-header d-flex align-items-center justify-content-between px-3 px-md-4" id="mainHeader">
+    <div class="d-flex align-items-center gap-3">
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <a href="#" class="header-brand" onclick="navigateTo('welcome')">
+        SOP Lab Komputer <span class="d-none d-sm-inline">| PTI FKIP UNILA</span>
+      </a>
+    </div>
+    <div class="d-flex align-items-center gap-3">
+      <button id="musicToggleBtn" class="music-btn" aria-label="Toggle Music" title="Nyalakan Suara">
+        <i class="fas fa-volume-xmark" id="musicIcon"></i>
+      </button>
+      <div class="header-logos d-none d-sm-flex gap-2">
+        <img src="assets/logo-unila.png" alt="Logo UNILA" title="Universitas Lampung">
+        <img src="assets/logo-fkip.png" alt="Logo FKIP" title="FKIP Universitas Lampung">
+      </div>
+    </div>
+  </header>
+
+  <!-- ====== SIDEBAR OVERLAY ====== -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ====== SIDEBAR / NAVIGATION DRAWER ====== -->
+  <nav class="custom-sidebar" id="sidebar">
+    <div class="sidebar-header-box">
+      <h3 class="h5 text-white mb-1"><i class="fas fa-clipboard-list me-2"></i> Kategori SOP</h3>
+      <p class="text-white-50 small mb-0">Pilih prosedur operasional standar</p>
+    </div>
+    <div class="d-flex flex-column py-2">
+      <div class="nav-item active" data-sop="welcome" onclick="navigateTo('welcome')">
+        <div class="nav-icon"><i class="fas fa-house"></i></div>
+        <div class="nav-text">
+          <span class="nav-label">Beranda Utama</span>
+          <span class="nav-code">Halaman Awal</span>
+        </div>
+      </div>
+      <div class="nav-item" data-sop="sop1" onclick="navigateTo('sop1')">
+        <div class="nav-icon"><i class="fas fa-desktop"></i></div>
+        <div class="nav-text">
+          <span class="nav-label">Praktikum Terjadwal</span>
+          <span class="nav-code">PTI/SOP/LH/001/2026</span>
+        </div>
+      </div>
+      <div class="nav-item" data-sop="sop2" onclick="navigateTo('sop2')">
+        <div class="nav-icon"><i class="fas fa-screwdriver-wrench"></i></div>
+        <div class="nav-text">
+          <span class="nav-label">Troubleshooting Alat</span>
+          <span class="nav-code">PTI/SOP/HJ/002/2026</span>
+        </div>
+      </div>
+      <div class="nav-item" data-sop="sop3" onclick="navigateTo('sop3')">
+        <div class="nav-icon"><i class="fas fa-hard-drive"></i></div>
+        <div class="nav-text">
+          <span class="nav-label">Backup & Recovery</span>
+          <span class="nav-code">PTI/SOP/SD/003/2026</span>
+        </div>
+      </div>
+      <div class="nav-item" data-sop="sop4" onclick="navigateTo('sop4')">
+        <div class="nav-icon"><i class="fas fa-box-open"></i></div>
+        <div class="nav-text">
+          <span class="nav-label">Peminjaman Lab</span>
+          <span class="nav-code">PTI/SOP/AL/004/2026</span>
+        </div>
+      </div>
+      <div class="nav-item" data-sop="sop5" onclick="navigateTo('sop5')">
+        <div class="nav-icon"><i class="fas fa-shield-halved"></i></div>
+        <div class="nav-text">
+          <span class="nav-label">Mitigasi Siber</span>
+          <span class="nav-code">PTI/SOP/KS/005/2026</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ====== MAIN CONTENT ====== -->
+  <main class="container py-4 py-md-5">
+
+    <!-- ====== WELCOME PAGE ====== -->
+    <section class="page-view welcome-page active" id="page-welcome">
+      <div class="text-center mb-5 mt-4">
+        <h1 class="display-5 fw-bold mb-3">Selamat Datang di Lab Komputer</h1>
+        <p class="lead text-white-50">Sistem Informasi Standar Operasional Prosedur (SOP)<br>Program Studi Pendidikan Teknologi Informasi</p>
+      </div>
+      
+      <div class="row g-4 justify-content-center">
+        <!-- SOP Cards -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="glass-card" onclick="navigateTo('sop1')">
+            <div class="card-icon-wrapper"><i class="fas fa-desktop"></i></div>
+            <h3 class="h5 mb-2">Praktikum Terjadwal</h3>
+            <p class="text-white-50 small mb-0">Prosedur operasional untuk pelaksanaan praktikum mahasiswa sesuai jadwal akademik.</p>
+          </div>
+        </div>
+        
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="glass-card" onclick="navigateTo('sop2')">
+            <div class="card-icon-wrapper"><i class="fas fa-screwdriver-wrench"></i></div>
+            <h3 class="h5 mb-2">Troubleshooting Hardware</h3>
+            <p class="text-white-50 small mb-0">Panduan teknis penanganan gangguan pada perangkat keras komputer laboratorium.</p>
+          </div>
+        </div>
+        
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="glass-card" onclick="navigateTo('sop3')">
+            <div class="card-icon-wrapper"><i class="fas fa-hard-drive"></i></div>
+            <h3 class="h5 mb-2">Backup & Recovery</h3>
+            <p class="text-white-50 small mb-0">Manajemen keamanan data, pencadangan rutin, dan pemulihan sistem penyimpanan.</p>
+          </div>
+        </div>
+        
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="glass-card" onclick="navigateTo('sop4')">
+            <div class="card-icon-wrapper"><i class="fas fa-box-open"></i></div>
+            <h3 class="h5 mb-2">Peminjaman Fasilitas</h3>
+            <p class="text-white-50 small mb-0">Alur birokrasi peminjaman ruang dan peralatan lab untuk kegiatan di luar jadwal praktikum.</p>
+          </div>
+        </div>
+        
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="glass-card" onclick="navigateTo('sop5')">
+            <div class="card-icon-wrapper"><i class="fas fa-shield-halved"></i></div>
+            <h3 class="h5 mb-2">Mitigasi Serangan Siber</h3>
+            <p class="text-white-50 small mb-0">Sistem respons cepat terhadap insiden keamanan jaringan dan infeksi malware.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== SOP 1: Praktikum Terjadwal ====== -->
+    <section class="page-view sop-page" id="page-sop1">
+      <div class="carousel-container">
+        <div id="carouselSop1" class="carousel slide" data-bs-ride="false" data-bs-touch="true">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselSop1" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#carouselSop1" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#carouselSop1" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target="#carouselSop1" data-bs-slide-to="3"></button>
+            <button type="button" data-bs-target="#carouselSop1" data-bs-slide-to="4"></button>
+            <button type="button" data-bs-target="#carouselSop1" data-bs-slide-to="5"></button>
+          </div>
+          <div class="carousel-inner">
+            
+            <!-- Slide 1: Hook -->
+            <div class="carousel-item active">
+              <div class="carousel-content">
+                <i class="fas fa-graduation-cap slide-icon"></i>
+                <h2 class="slide-title">Mau Pakai Lab untuk Praktikum? Baca Dulu Panduannya!</h2>
+                <p class="slide-text">Prosedur Praktikum Terjadwal menjamin pelaksanaan kegiatan praktikum yang tertib, efisien, dan akuntabel di PTI FKIP UNILA.</p>
+              </div>
+            </div>
+
+            <!-- Slide 2: Urgency -->
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <div class="slide-subtitle">Tujuan & Urgensi</div>
+                <i class="fas fa-clipboard-list slide-icon"></i>
+                <h3 class="slide-title">Mengapa Prosedur Ini Krusial?</h3>
+                <p class="slide-text">Tanpa prosedur yang jelas, praktikum bisa kacau, perangkat tidak terpantau, dan waktu terbuang. SOP ini memastikan sesi praktikum memiliki rekaman administrasi yang valid dan perangkat terjaga dengan baik.</p>
+              </div>
+            </div>
+
+            <!-- Slide 3: Langkah Awal -->
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <div class="slide-subtitle">Langkah Pelaksanaan</div>
+                <h3 class="slide-title">Tahap Pengajuan & Persiapan</h3>
+                <div class="d-flex flex-column gap-3 w-100 mt-3">
+                  <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div>
+                      <strong>Pengajuan Form</strong>
+                      <div class="text-white-50 small mt-1">Dosen/Asisten Lab mengisi Form Permohonan Lab H-3.</div>
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div>
+                      <strong>Verifikasi Jadwal</strong>
+                      <div class="text-white-50 small mt-1">Laboran memverifikasi jadwal & form permohonan.</div>
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div>
+                      <strong>Persiapan Fasilitas</strong>
+                      <div class="text-white-50 small mt-1">Laboran menyiapkan ruangan & perangkat H-30 menit.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 4: Pelaksanaan -->
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <div class="slide-subtitle">Langkah Pelaksanaan</div>
+                <h3 class="slide-title">Tahap Pelaksanaan Praktikum</h3>
+                <div class="d-flex flex-column gap-3 w-100 mt-3">
+                  <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div>
+                      <strong>Presensi Mahasiswa</strong>
+                      <div class="text-white-50 small mt-1">Asisten Lab melakukan presensi mahasiswa.</div>
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <div class="step-number">5</div>
+                    <div>
+                      <strong>Memimpin Praktikum</strong>
+                      <div class="text-white-50 small mt-1">Dosen/Asisten Lab memimpin pelaksanaan praktikum.</div>
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <div class="step-number">6</div>
+                    <div>
+                      <strong>Penjagaan Ketertiban</strong>
+                      <div class="text-white-50 small mt-1">Mahasiswa menjaga tertib & kebersihan selama praktikum.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 5: Penyelesaian -->
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <div class="slide-subtitle">Langkah Akhir</div>
+                <h3 class="slide-title">Penyelesaian & Arsip</h3>
+                <div class="d-flex flex-column gap-3 w-100 mt-3">
+                  <div class="step-item">
+                    <div class="step-number">7</div>
+                    <div>
+                      <strong>Penutupan Sesi & Pengecekan</strong>
+                      <div class="text-white-50 small mt-1">Asisten menutup sesi tepat waktu. Laboran mengecek kondisi perangkat & ruangan.</div>
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <div class="step-number">8</div>
+                    <div>
+                      <strong>Berita Acara & Pengarsipan</strong>
+                      <div class="text-white-50 small mt-1">Asisten mengisi & tanda tangan Berita Acara. Laboran mengarsipkan BA & Daftar Hadir.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 6: CTA -->
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <i class="fas fa-qrcode slide-icon"></i>
+                <h3 class="slide-title">Unduh Dokumen Legalitas</h3>
+                <p class="slide-text mb-4">Silakan pindai kode QR di bawah ini untuk mengunduh Form Permohonan Penggunaan Lab.</p>
+                <div class="cta-card text-center">
+                  <div class="qr-placeholder"><i class="fas fa-qrcode"></i></div>
+                  <p class="small text-white-50 mb-0">Arahkan kamera smartphone Anda ke kode ini.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselSop1" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselSop1" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+        <div class="sop-meta-info">
+          <h2>SOP Praktikum Terjadwal</h2>
+          <p>PTI/SOP/LH/001/2026 • Rev 00 • Berlaku: 01 Juli 2026</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== SOP 2: Troubleshooting ====== -->
+    <section class="page-view sop-page" id="page-sop2">
+      <div class="carousel-container">
+        <div id="carouselSop2" class="carousel slide" data-bs-ride="false" data-bs-touch="true">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselSop2" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#carouselSop2" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#carouselSop2" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target="#carouselSop2" data-bs-slide-to="3"></button>
+            <button type="button" data-bs-target="#carouselSop2" data-bs-slide-to="4"></button>
+            <button type="button" data-bs-target="#carouselSop2" data-bs-slide-to="5"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="carousel-content">
+                <i class="fas fa-tools slide-icon"></i>
+                <h2 class="slide-title">Komputer Lab Tiba-Tiba Rusak? Jangan Panik, Ikuti Langkah Ini!</h2>
+                <p class="slide-text">Langkah sistematis dalam mengidentifikasi dan menangani masalah pada perangkat keras dan jaringan laboratorium.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <div class="slide-subtitle">Tujuan & Urgensi</div>
+                <i class="fas fa-triangle-exclamation slide-icon"></i>
+                <h3 class="slide-title">Pentingnya Respons Cepat</h3>
+                <p class="slide-text">Kerusakan sekecil apapun bisa menghambat belajar. Melaporkan cepat berarti meminimalkan downtime dan mencegah kerusakan kecil menyebar ke komponen vital.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <div class="slide-subtitle">Langkah Penanganan</div>
+                <h3 class="slide-title">Tahap Laporan & Diagnosa</h3>
+                <div class="d-flex flex-column gap-3 w-100 mt-3">
+                  <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div>
+                      <strong>Pelaporan Insiden</strong>
+                      <div class="text-white-50 small mt-1">Pengguna/Laboran mengisi Tiket Kerusakan.</div>
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div>
+                      <strong>Pencatatan & Diagnosa</strong>
+                      <div class="text-white-50 small mt-1">Laboran mencatat tiket dalam Logbook Pemeliharaan, melakukan diagnosa awal, dan menentukan kategori kerusakan.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <div class="slide-subtitle">Langkah Penanganan</div>
+                <h3 class="slide-title">Tindakan Perbaikan</h3>
+                <div class="d-flex flex-column gap-3 w-100 mt-3">
+                  <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div>
+                      <strong>Perbaikan Kategori Ringan</strong>
+                      <div class="text-white-50 small mt-1">Jika kerusakan ringan: Laboran memperbaiki langsung.</div>
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div>
+                      <strong>Perbaikan Kategori Sedang/Berat</strong>
+                      <div class="text-white-50 small mt-1">Kepala Lab menyetujui Work Order. Teknisi/Vendor melaksanakan perbaikan.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <div class="slide-subtitle">Langkah Penanganan</div>
+                <h3 class="slide-title">Penyelesaian Akhir</h3>
+                <div class="d-flex flex-column gap-3 w-100 mt-3">
+                  <div class="step-item">
+                    <div class="step-number">5</div>
+                    <div>
+                      <strong>Pengujian Fungsi</strong>
+                      <div class="text-white-50 small mt-1">Laboran menguji fungsi perangkat kembali.</div>
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <div class="step-number">6</div>
+                    <div>
+                      <strong>Penutupan Tiket & BAST</strong>
+                      <div class="text-white-50 small mt-1">Laboran menutup tiket & arsip. Kepala Lab tanda tangan BAST (jika diperbaiki vendor).</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <i class="fas fa-file-signature slide-icon"></i>
+                <h3 class="slide-title">Lapor Kerusakan Sekarang?</h3>
+                <p class="slide-text mb-4">Pindai QR ini untuk mengakses e-form tiket perbaikan IT Support Laboratorium (Work Order).</p>
+                <div class="cta-card text-center">
+                  <div class="qr-placeholder"><i class="fas fa-qrcode"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselSop2" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselSop2" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+        <div class="sop-meta-info">
+          <h2>SOP Troubleshooting Perangkat</h2>
+          <p>PTI/SOP/HJ/002/2026 • Rev 00 • Berlaku: 01 Juli 2026</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== SOP 3: Backup Data ====== -->
+    <section class="page-view sop-page" id="page-sop3">
+      <div class="carousel-container">
+        <div id="carouselSop3" class="carousel slide" data-bs-ride="false" data-bs-touch="true">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselSop3" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#carouselSop3" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#carouselSop3" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target="#carouselSop3" data-bs-slide-to="3"></button>
+            <button type="button" data-bs-target="#carouselSop3" data-bs-slide-to="4"></button>
+            <button type="button" data-bs-target="#carouselSop3" data-bs-slide-to="5"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="carousel-content">
+                <i class="fas fa-database slide-icon"></i>
+                <h2 class="slide-title">Data Kampus Hilang? Ini Cara Mencegahnya!</h2>
+                <p class="slide-text">Panduan untuk mencadangkan database dan memulihkan data saat terjadi kegagalan sistem atau bencana.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <div class="slide-subtitle">Urgensi Keamanan</div>
+                <i class="fas fa-server slide-icon"></i>
+                <h3 class="slide-title">Mengapa Harus Rutin?</h3>
+                <p class="slide-text">Human error atau bencana tak terduga bisa menghapus data akademik krusial. Sistem backup yang disiplin adalah penyelamat utama institusi!</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <div class="slide-subtitle">Proses Backup</div>
+                <h3 class="slide-title">Tahap Pencadangan Data</h3>
+                <div class="d-flex flex-column gap-3 w-100 mt-3">
+                  <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div>
+                      <strong>Jadwal & Skrip Otomatis</strong>
+                      <div class="text-white-50 small mt-1">Laboran memastikan sesi selesai, lalu jalankan skrip backup otomatis.</div>
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div>
+                      <strong>Verifikasi & Penyimpanan</strong>
+                      <div class="text-white-50 small mt-1">Verifikasi integritas checksum, simpan backup ke media eksternal, dan catat log backup di Logbook.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <div class="slide-subtitle">Proses Recovery</div>
+                <h3 class="slide-title">Persiapan Recovery</h3>
+                <div class="d-flex flex-column gap-3 w-100 mt-3">
+                  <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div>
+                      <strong>Identifikasi Kehilangan</strong>
+                      <div class="text-white-50 small mt-1">Identifikasi & dokumentasi data yang hilang.</div>
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div>
+                      <strong>Persetujuan & Point Pemulihan</strong>
+                      <div class="text-white-50 small mt-1">Kepala Lab menyetujui Form Recovery. Lalu pilih recovery point yang sesuai.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <div class="slide-subtitle">Proses Recovery</div>
+                <h3 class="slide-title">Eksekusi Pemulihan Sistem</h3>
+                <div class="d-flex flex-column gap-3 w-100 mt-3">
+                  <div class="step-item">
+                    <div class="step-number">5</div>
+                    <div>
+                      <strong>Eksekusi & Uji Coba</strong>
+                      <div class="text-white-50 small mt-1">Eksekusi recovery di test environment & pengujian data hasil recovery.</div>
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <div class="step-number">6</div>
+                    <div>
+                      <strong>Deploy ke Produksi</strong>
+                      <div class="text-white-50 small mt-1">Kepala Lab setujui deploy ke sistem produksi utama.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <i class="fas fa-cloud-arrow-down slide-icon"></i>
+                <h3 class="slide-title">Akses Log Backup Server</h3>
+                <p class="slide-text mb-4">Pindai QR ini untuk masuk ke dashboard monitoring storage dan log backup harian.</p>
+                <div class="cta-card text-center">
+                  <div class="qr-placeholder"><i class="fas fa-qrcode"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselSop3" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselSop3" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+        <div class="sop-meta-info">
+          <h2>SOP Backup & Recovery Data</h2>
+          <p>PTI/SOP/SD/003/2026 • Rev 00 • Berlaku: 01 Juli 2026</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== SOP 4: Peminjaman Alat ====== -->
+    <section class="page-view sop-page" id="page-sop4">
+      <div class="carousel-container">
+        <div id="carouselSop4" class="carousel slide" data-bs-ride="false" data-bs-touch="true">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselSop4" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#carouselSop4" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#carouselSop4" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target="#carouselSop4" data-bs-slide-to="3"></button>
+            <button type="button" data-bs-target="#carouselSop4" data-bs-slide-to="4"></button>
+            <button type="button" data-bs-target="#carouselSop4" data-bs-slide-to="5"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="carousel-content">
+                <i class="fas fa-handshake slide-icon"></i>
+                <h2 class="slide-title">Butuh Alat Lab untuk Acara? Begini Cara Pinjamnya!</h2>
+                <p class="slide-text">Birokrasi resmi peminjaman perangkat laboratorium oleh sivitas akademika secara tertib dan terdokumentasi.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <div class="slide-subtitle">Urgensi Prosedur</div>
+                <i class="fas fa-clipboard-check slide-icon"></i>
+                <h3 class="slide-title">Keamanan Aset Negara (BMN)</h3>
+                <p class="slide-text">Memastikan pelacakan posisi barang inventaris (proyektor, kabel, dll) sangat jelas dan menjamin pertanggungjawaban apabila terjadi kehilangan.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <div class="slide-subtitle">Alur Birokrasi</div>
+                <h3 class="slide-title">Tahap Pengajuan & Keputusan</h3>
+                <div class="d-flex flex-column gap-3 w-100 mt-3">
+                  <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div>
+                      <strong>Isi Form Peminjaman H-1</strong>
+                      <div class="text-white-50 small mt-1">Peminjam mengisi Form Peminjaman. Laboran memeriksa ketersediaan & kondisi alat.</div>
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div>
+                      <strong>Keputusan Persetujuan</strong>
+                      <div class="text-white-50 small mt-1">Kepala Lab menyetujui/menolak permohonan. Jika ditolak, Peminjam diberi notifikasi penolakan.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <div class="slide-subtitle">Alur Birokrasi</div>
+                <h3 class="slide-title">Penyerahan & Penggunaan</h3>
+                <div class="d-flex flex-column gap-3 w-100 mt-3">
+                  <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div>
+                      <strong>Serah Terima Alat</strong>
+                      <div class="text-white-50 small mt-1">Jika disetujui, Laboran menyiapkan alat. Peminjam & Laboran tanda tangan BAST.</div>
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div>
+                      <strong>Pencatatan & Penggunaan</strong>
+                      <div class="text-white-50 small mt-1">Laboran catat ke Buku Inventaris Peminjaman. Peminjam menggunakan alat sesuai tujuan.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <div class="slide-subtitle">Alur Birokrasi</div>
+                <h3 class="slide-title">Tahap Pengembalian</h3>
+                <div class="d-flex flex-column gap-3 w-100 mt-3">
+                  <div class="step-item">
+                    <div class="step-number">5</div>
+                    <div>
+                      <strong>Pengembalian Tepat Waktu</strong>
+                      <div class="text-white-50 small mt-1">Peminjam mengembalikan alat tepat waktu. Laboran cek kondisi & tanda tangan BA Pengembalian.</div>
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <div class="step-number">6</div>
+                    <div>
+                      <strong>Update Arsip</strong>
+                      <div class="text-white-50 small mt-1">Laboran update inventaris & arsip dokumen peminjaman.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <i class="fas fa-file-pdf slide-icon"></i>
+                <h3 class="slide-title">Download Form Peminjaman Resmi di Sini!</h3>
+                <p class="slide-text mb-4">Pindai QR ini untuk mengunduh format standar surat peminjaman fasilitas BMN.</p>
+                <div class="cta-card text-center">
+                  <div class="qr-placeholder"><i class="fas fa-qrcode"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselSop4" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselSop4" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+        <div class="sop-meta-info">
+          <h2>SOP Peminjaman Alat Lab</h2>
+          <p>PTI/SOP/AL/004/2026 • Rev 00 • Berlaku: 01 Juli 2026</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== SOP 5: Mitigasi Serangan Siber ====== -->
+    <section class="page-view sop-page" id="page-sop5">
+      <div class="carousel-container">
+        <div id="carouselSop5" class="carousel slide" data-bs-ride="false" data-bs-touch="true">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselSop5" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#carouselSop5" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#carouselSop5" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target="#carouselSop5" data-bs-slide-to="3"></button>
+            <button type="button" data-bs-target="#carouselSop5" data-bs-slide-to="4"></button>
+            <button type="button" data-bs-target="#carouselSop5" data-bs-slide-to="5"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="carousel-content">
+                <i class="fas fa-bug-slash slide-icon"></i>
+                <h2 class="slide-title">Awas Hacker! Ini Protokol Darurat Kalau Lab Diserang!</h2>
+                <p class="slide-text">Langkah respons terstruktur terhadap insiden keamanan siber (Ransomware, Malware, Peretasan).</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <div class="slide-subtitle">Urgensi Isolasi</div>
+                <i class="fas fa-network-wired slide-icon"></i>
+                <h3 class="slide-title">Isolasi Kritis (Waktu Adalah Kunci)</h3>
+                <p class="slide-text">Mencegah penyebaran ancaman ke jaringan intranet Universitas dan meminimalisir dampak hilangnya data akibat eksploitasi peretas.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <div class="slide-subtitle">Langkah Darurat</div>
+                <h3 class="slide-title">Identifikasi & Eskalasi Insiden</h3>
+                <div class="d-flex flex-column gap-3 w-100 mt-3">
+                  <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div>
+                      <strong>Deteksi & Isolasi</strong>
+                      <div class="text-white-50 small mt-1">Pengguna/Laboran mengidentifikasi & melaporkan insiden. Laboran segera mengisolasi perangkat/jaringan terdampak.</div>
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div>
+                      <strong>Bentuk IRT & Lapor Pimpinan</strong>
+                      <div class="text-white-50 small mt-1">Kepala Lab membentuk IRT & melapor ke pimpinan terkait eskalasi insiden.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <div class="slide-subtitle">Langkah Pemulihan</div>
+                <h3 class="slide-title">Analisis, Forensik & Eliminasi</h3>
+                <div class="d-flex flex-column gap-3 w-100 mt-3">
+                  <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div>
+                      <strong>Investigasi Tim IRT</strong>
+                      <div class="text-white-50 small mt-1">IRT analisis jenis, vektor, dan skala insiden. Lalu kumpulkan bukti digital forensik.</div>
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div>
+                      <strong>Karantina & Pembersihan</strong>
+                      <div class="text-white-50 small mt-1">IRT mengeliminasi ancaman dengan tools keamanan (Antivirus/EDR).</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <div class="slide-subtitle">Langkah Akhir</div>
+                <h3 class="slide-title">Restore & Laporan Akhir</h3>
+                <div class="d-flex flex-column gap-3 w-100 mt-3">
+                  <div class="step-item">
+                    <div class="step-number">5</div>
+                    <div>
+                      <strong>Pemulihan & Pengujian</strong>
+                      <div class="text-white-50 small mt-1">Laboran restore sistem dari backup bersih & uji ulang seluruh fungsi sistem.</div>
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <div class="step-number">6</div>
+                    <div>
+                      <strong>Pelaporan Insiden Terstruktur</strong>
+                      <div class="text-white-50 small mt-1">Kepala Lab buat laporan tertulis ke Dekan FKIP. IRT susun Laporan Akhir & rekomendasi keamanan.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-content">
+                <i class="fas fa-file-contract slide-icon"></i>
+                <h3 class="slide-title">Insiden Darurat?</h3>
+                <p class="slide-text mb-4">Pindai QR ini untuk menghubungi Satgas IT / NOC Universitas Lampung secara darurat via Hot-Line 24 jam.</p>
+                <div class="cta-card text-center">
+                  <div class="qr-placeholder"><i class="fas fa-qrcode"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselSop5" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselSop5" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+        <div class="sop-meta-info">
+          <h2>SOP Mitigasi Serangan Siber</h2>
+          <p>PTI/SOP/KS/005/2026 • Rev 00 • Berlaku: 01 Juli 2026</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Three.js & Vanta.js for 3D Background -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom Script -->
+  <script src="script.js"></script>
+</body>
+</html>
